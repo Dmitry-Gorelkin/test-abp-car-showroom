@@ -9,6 +9,7 @@ const App: FC = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="vehicles/:id" element={<div>Page ID</div>} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

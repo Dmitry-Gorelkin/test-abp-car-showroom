@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 18px;
     }
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1440px) {
         font-size: 20px;
     }
     }
