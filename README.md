@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+Life Page: https://test-abp-car-showroom.vercel.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ТЕСТОВЕ ЗАВДАННЯ “CAR SHOWROOM” Пропонуємо разом із нами розробити інтерфейс віртуального
+автосалону, який продемонструє своїм відвідувачам наявний асортимент автомобілів та дозволить
+висловити свої думки щодо певних моделей у коментарях.
 
-Currently, two official plugins are available:
+Звідки взяти дані? Для виконання цього завдання скористуємось безкоштовним API DummyJSON: із розділу
+Products можна отримати перелік різноманітних товарів, відфільтрувати їх по категорії vehicle — це і
+будуть наші автомобілі. В об’єкті кожного автомобіля є поле reviews з масивом коментарів-оглядів. За
+бажанням, підключайте будь-які інші публічно доступні сервіси для генерації даних. На що звернути
+увагу? Нижче вказані вимоги до реалізації, але вони лише задають загальні рамки. Остаточний
+результат залежить від вашого бачення, розуміння принципів побудови інтерфейсів та зручності їх
+використання. Ми не заохочуємо вас вигадувати складний дизайн — навпаки, можна обійтись стандартними
+елементами, або набором базових елементів з вашої улюбленої бібліотеки. Головне, щоби інтерфейс
+працював без помилок та виглядав гармонійно — це ми будемо оцінювати як користувачі з долею
+суб’єктивності. Але, даруйте, без цього ніяк. Розробка застосунку
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Для роботи з API напишемо SPA такої структури: − Головна сторінка / Компоненти сторінки: ▪ Список
+автомобілів ▪ Форма пошуку або фільтрації автомобілів за параметрами − Індивідуальна сторінка
+автомобіля /vehicles/{vehicleId} Компоненти сторінки: ▪ Блок розширеної інформації про автомобіль ▪
+Список коментарів ▪ Форма додавання коментаря ВИМОГИ ДО РЕАЛІЗАЦІЇ • Застосунок написаний на React.
+• При заповненні форм виконується мінімальна валідація даних (перевірка на наявність значення, на
+максимальну довжину). • Додані через застосунок коментарі зберігаються у локальному сховищі браузера
+і виводяться на сторінці після її перезавантаження.Можна застосовувати необхідні бібліотеки на свій
+розсуд.
 
-## Expanding the ESLint configuration
+ВИМОГИ ДО ВЕРСТКИ Верстка має бути мінімалістичною, без фреймворків, але виглядати коректно
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+у роздільній здатності від 320 до 1440 px (елементи не мають «злипатися» або виходити за межі
+екрана). Необхідно дотримуватися семантики елементів.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+ВИМОГИ ДО РОЗМІЩЕННЯ Вихідний (не стиснутий) код застосунку треба завантажити у публічний
+репозиторій на GitHub. В описі репозиторію обов’язково дайте посилання на розгорнутий застосунок. Ви
+можете скористатись будь-яким сервісом для розгортання та хостингу: GitHub Pagesii, Vercel, Netlify
+або іншим. Головне, щоби застосунок залишався доступним щонайменше тиждень з моменту надсилання вами
+роботи. Акуратний, легкий для сприйняття вихідний код не менш важливий, ніж відсутність помилок у
+роботі застосунку. ii Зважайте на обмеження при використанні клієнтського роутингу на GitHub Pages:
+https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing
