@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+
     margin: 0;
 
     font-family: 'Montserrat', sans-serif;
@@ -18,6 +19,8 @@ export const GlobalStyle = createGlobalStyle`
 
     color: ${p => p.theme.colors.text};
     background-color: ${p => p.theme.colors.background};
+
+
 
     @media screen and (min-width: 768px) {
         font-size: 18px;

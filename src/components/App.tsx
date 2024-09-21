@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { FC } from 'react';
+import { FC, lazy } from 'react';
 import { Layout } from './Layout';
-import NotFound from '../pages/NotFound';
-import Home from '../pages/Home';
+
+const Home = lazy(() => import('../pages/Home'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 const App: FC = () => {
   return (
