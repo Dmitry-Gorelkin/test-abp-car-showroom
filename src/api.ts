@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Car } from '../types';
+import { Car } from './types';
 
 axios.defaults.baseURL = 'https://dummyjson.com/';
 
