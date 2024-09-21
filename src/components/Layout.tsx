@@ -7,12 +7,10 @@ export const Layout: FC = () => {
   return (
     <>
       <Header />
-
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
