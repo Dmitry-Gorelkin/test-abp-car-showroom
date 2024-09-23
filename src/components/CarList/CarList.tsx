@@ -2,12 +2,20 @@ import { FC, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { fetchCarList } from '../../api';
 import { Car } from '../../types';
-import CarItem from '../CarItem/CarItem';
 import LoaderTailSpin from '../UI/LoaderTailSpin/LoaderTailSpin';
+import CarCardItem from '../CarItem/CarCardItem';
+
+enum STATUS_PAGE {
+  ideal = 'IDEAL',
+  load = 'LOAD',
+  error = 'ERROR',
+  noimage = 'NOIMAGE',
+}
 
 const CarList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [status, setStatus] = useState(STATUS_PAGE.ideal);
 
   useEffect(() => {
     const api = async () => {
@@ -32,15 +40,15 @@ const CarList: FC = () => {
 
   return (
     <>
-      {loading ? (
-        <LoaderTailSpin />
-      ) : (
-        <ul>
-          {cars.map(({ id }) => (
-            <CarItem key={id} />
+      {status === STATUS_PAGE.load && <LoaderTailSpin />}
+      <ul>
+        {cars.length > 0 &&
+          cars.map(({ id, images, brand, title, price }) => (
+            <CarCardItem key={id} srcImages={images[0]} brand={brand} title={title} price={price} />
           ))}
-        </ul>
-      )}
+      </ul>
+      {/* {status === STATUS_PAGE.noimage && <NoImage />} */}
+      {/* {status === STATUS_PAGE.error && <ErrorMessage />} */}
     </>
   );
 };
