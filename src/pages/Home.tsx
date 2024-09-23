@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Container } from '../components/UI/Conteiner/Conteiner.styled';
 import HeroMain from '../components/HeroMain/HeroMain';
-import LoaderTailSpin from '../components/UI/LoaderTailSpin/LoaderTailSpin';
-import CarList from '../components/CarList/CarList';
+// import LoaderTailSpin from '../components/UI/LoaderTailSpin/LoaderTailSpin';
+import CarsList from '../components/CarsList/CarsList';
 import { Section } from '../components/UI/Section/Section.styled';
 
 const Home: FC = () => {
@@ -10,8 +10,8 @@ const Home: FC = () => {
     <Container>
       <Section>
         <HeroMain />
-        <CarList />
-        <LoaderTailSpin />
+        <CarsList />
+        {/* <LoaderTailSpin /> */}
       </Section>
     </Container>
   );
