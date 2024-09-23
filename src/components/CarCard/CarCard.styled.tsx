@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CarCardContainer = styled.li`
@@ -12,9 +13,13 @@ export const CarCardContainer = styled.li`
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 10px ${p => p.theme.colors.btnHover};
-    border-radius: 10px;
+    box-shadow: 0 0 15px ${p => p.theme.colors.accent};
+    border-radius: 16px;
   }
+`;
+
+export const CarCardLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const CarCardImg = styled.img`
@@ -32,6 +37,10 @@ export const CarCardImg = styled.img`
     width: 400px;
     height: 250px;
   }
+`;
+
+export const CarCardCaption = styled.div`
+  background-color: ${p => p.theme.colors.backgroundimage};
 `;
 
 export const CarCardTitle = styled.h3`

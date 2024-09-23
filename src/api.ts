@@ -14,7 +14,7 @@ export const fetchCarList = async (): Promise<CarsListFetch> => {
   const response = await axios('products/category/vehicle');
   return response.data;
 };
-export const fetchCarId = async (id: number | string): Promise<Car> => {
+export const fetchCarId = async (id: string): Promise<Car> => {
   const response = await axios(`products/${id}`);
   return response.data;
 };

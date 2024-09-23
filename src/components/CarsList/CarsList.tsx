@@ -39,7 +39,14 @@ const CarsList: FC = () => {
           <LoaderTailSpin />
         ) : cars.length > 0 ? (
           cars.map(({ id, images, brand, title, price }) => (
-            <CarCard key={id} srcImages={images[0]} brand={brand} title={title} price={price} />
+            <CarCard
+              key={id}
+              id={id}
+              srcImages={images[0]}
+              brand={brand}
+              title={title}
+              price={price}
+            />
           ))
         ) : (
           <NoCars />
