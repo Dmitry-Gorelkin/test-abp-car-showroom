@@ -1,8 +1,7 @@
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { FC, useRef } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { FC } from 'react';
 import { Button } from '../Button/Button.styled';
 import { SliderLazyLoadContainerButton, SliderLazyLoadContainer } from './SliderLazyLoad.styled';
 
@@ -21,7 +20,7 @@ const SliderLazyLoad: FC<Pictures> = ({ pictures }) => {
 
   const settings = {
     dots: true,
-    lazyLoad: true,
+    lazyLoad: 'progressive',
     infinite: true,
     speed: 500,
     slidesToShow: 1,

@@ -2,11 +2,11 @@ import { FC, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { fetchCarList } from '../../api';
 import { Car } from '../../types';
-import LoaderTailSpin from '../UI/LoaderTailSpin/LoaderTailSpin';
 import NoCars from '../NoCars/NoCars';
 import CarCard from '../CarCard/CarCard';
 import { CarsListContainer } from './CarsList.styled';
 import { Section } from '../UI/Section/Section.styled';
+import LoaderPuff from '../UI/LoaderPuff/LoaderPuff';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -29,14 +29,18 @@ const CarsList: FC = () => {
       }
     };
 
-    api();
+    setTimeout(() => {
+      api();
+    }, 3000);
+
+    // api();
   }, []);
 
   return (
     <Section>
       <CarsListContainer>
         {loading ? (
-          <LoaderTailSpin />
+          <LoaderPuff />
         ) : cars.length > 0 ? (
           cars.map(({ id, images, brand, title, price }) => (
             <CarCard

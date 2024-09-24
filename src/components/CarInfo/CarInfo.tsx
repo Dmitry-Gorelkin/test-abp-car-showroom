@@ -12,7 +12,7 @@ import NotFound from '../../pages/NotFoundPage';
 const CarInfo: FC = () => {
   const { id } = useParams();
   const [car, setCar] = useState<Car>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -52,7 +52,9 @@ const CarInfo: FC = () => {
   return (
     <>
       {loading ? (
-        <LoaderTailSpin />
+        <CarInfoContainer>
+          <LoaderTailSpin />
+        </CarInfoContainer>
       ) : (
         <>
           <Section>
