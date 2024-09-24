@@ -10,17 +10,21 @@ type Pictures = {
 };
 
 const SliderLazyLoad: FC<Pictures> = ({ pictures }) => {
-  let sliderRef = useRef(null);
+  const sliderRef = useRef<Slider | null>(null);
   const next = () => {
-    sliderRef.slickNext();
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
   };
   const previous = () => {
-    sliderRef.slickPrev();
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
   };
 
   const settings = {
     dots: true,
-    lazyLoad: 'progressive',
+    lazyLoad: 'progressive' as 'ondemand' | 'progressive',
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -34,7 +38,7 @@ const SliderLazyLoad: FC<Pictures> = ({ pictures }) => {
     <SliderLazyLoadContainer>
       <Slider
         ref={slider => {
-          sliderRef = slider;
+          sliderRef.current = slider;
         }}
         {...settings}
       >
