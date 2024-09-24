@@ -3,7 +3,7 @@ import { HeaderBackgroundColor, HeaderContainer } from './Header.styled';
 import { Container } from '../UI/Conteiner/Conteiner.styled';
 import { Section } from '../UI/Section/Section.styled';
 import Logo from '../Logo/Logo';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header: FC = () => {
   return (
@@ -13,8 +13,8 @@ const Header: FC = () => {
           <HeaderContainer>
             <Logo to="/" />
             <nav>
-              <Link to="/">Home</Link>
-              <Link to="about">About Us</Link>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="about">About Us</NavLink>
             </nav>
             <p>моб меню</p>
           </HeaderContainer>
