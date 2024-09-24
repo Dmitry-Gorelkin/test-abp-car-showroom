@@ -29,11 +29,7 @@ const CarsList: FC = () => {
       }
     };
 
-    setTimeout(() => {
-      api();
-    }, 3000);
-
-    // api();
+    api();
   }, []);
 
   return (
