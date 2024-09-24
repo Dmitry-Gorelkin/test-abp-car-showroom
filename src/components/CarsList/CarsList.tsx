@@ -6,6 +6,7 @@ import LoaderTailSpin from '../UI/LoaderTailSpin/LoaderTailSpin';
 import NoCars from '../NoCars/NoCars';
 import CarCard from '../CarCard/CarCard';
 import { CarsListContainer } from './CarsList.styled';
+import { Section } from '../UI/Section/Section.styled';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -16,7 +17,6 @@ const CarsList: FC = () => {
       setLoading(true);
       try {
         const data = await fetchCarList();
-        console.log(data.products);
         setCars(data.products);
       } catch (error: unknown) {
         if (error instanceof Error) {
@@ -33,7 +33,7 @@ const CarsList: FC = () => {
   }, []);
 
   return (
-    <>
+    <Section>
       <CarsListContainer>
         {loading ? (
           <LoaderTailSpin />
@@ -52,7 +52,7 @@ const CarsList: FC = () => {
           <NoCars />
         )}
       </CarsListContainer>
-    </>
+    </Section>
   );
 };
 

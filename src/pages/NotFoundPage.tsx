@@ -1,16 +1,16 @@
 import { FC } from 'react';
-import CarPage from '../components/CarPage/CarPage';
 import { Container } from '../components/UI/Conteiner/Conteiner.styled';
 import { Section } from '../components/UI/Section/Section.styled';
+import NotFound from '../components/UI/NotFound/NotFound';
 
-const Car: FC = () => {
+export const NotFoundPage: FC = () => {
   return (
     <Container>
       <Section>
-        <CarPage />
+        <NotFound />
       </Section>
     </Container>
   );
 };
 
-export default Car;
+export default NotFoundPage;
