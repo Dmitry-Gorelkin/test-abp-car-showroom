@@ -25,7 +25,7 @@ export const LogoText = styled.p`
   text-transform: uppercase;
   color: ${p => p.theme.colors.textWhite};
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: 425px) {
     font-size: 16px;
   }
 

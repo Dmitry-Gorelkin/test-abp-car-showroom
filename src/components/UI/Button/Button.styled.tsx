@@ -27,7 +27,7 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 425px) {
-    width: 200px;
+    width: 150px;
   }
 
   @media screen and (min-width: 768px) {
