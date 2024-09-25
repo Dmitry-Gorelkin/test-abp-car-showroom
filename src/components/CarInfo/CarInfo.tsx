@@ -12,7 +12,6 @@ import ReviewsUsers from '../ReviewsUsers/ReviewsUsers';
 
 type LocalReview = {
   reviewerName: string;
-  date: string;
   comment: string;
 };
 
