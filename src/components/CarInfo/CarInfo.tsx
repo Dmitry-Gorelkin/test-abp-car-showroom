@@ -8,7 +8,7 @@ import SliderLazyLoad from '../UI/SliderLazyLoad/SliderLazyLoad';
 import { Section } from '../UI/Section/Section.styled';
 import { CarInfoContainer, CarInfoTitle } from './CarInfo.styled';
 import NotFound from '../UI/NotFound/NotFound';
-import { Button } from '../UI/Button/Button.styled';
+import ReviewsUsers from '../ReviewsUsers/ReviewsUsers';
 
 type LocalReview = {
   reviewerName: string;
@@ -58,7 +58,7 @@ const CarInfo: FC = () => {
     };
 
     api();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const reviewsStored = localStorage.getItem('reviews');
@@ -68,11 +68,10 @@ const CarInfo: FC = () => {
 
     if (reviewsArrStored) {
       const reviewsArr = reviewsArrStored.find((e: LocalReviews) => e.id === id);
-      console.log(reviewsArr);
 
       if (reviewsArr) setReviewsUser(reviewsArr.reviews);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     setReviews([...reviewsApi, ...reviewsUser]);
@@ -102,24 +101,10 @@ const CarInfo: FC = () => {
             {/* CarCaption */}
             <p>{car.description}</p>
             <p>Price: {car.price}$</p>
-            <p>Number of cars in stock: {car?.stock === 0 ? car.availabilityStatus : car.stock}</p>
+            <p>Number of cars in stock: {car.stock === 0 ? car.availabilityStatus : car.stock}</p>
           </Section>
           <Section>
-            {/* CarReview */}
-            <h3>Reviews:</h3>
-            <ul>
-              {reviews.map(({ reviewerName, date, comment }, i) => {
-                return (
-                  <li key={i}>
-                    <p>Name: {reviewerName}</p>
-                    <p>Date: {date}</p>
-                    <p>Comment: {comment}</p>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <Button>add review</Button>
+            <ReviewsUsers reviews={reviews} />
           </Section>
         </>
       )}
