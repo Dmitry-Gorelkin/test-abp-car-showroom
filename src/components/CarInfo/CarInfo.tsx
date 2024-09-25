@@ -23,7 +23,7 @@ type LocalReviews = {
 
 const CarInfo: FC = () => {
   const { id } = useParams();
-  const [car, setCar] = useState<Car>({});
+  const [car, setCar] = useState<Car>({} as Car);
   const [reviewsUser, setReviewsUser] = useState<LocalReview[]>([]);
   const [reviewsApi, setReviewsApi] = useState<Reviews>([]);
   const [reviews, setReviews] = useState<Reviews>([]);
