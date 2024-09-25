@@ -2,16 +2,31 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import LoaderTailSpin from '../UI/LoaderTailSpin/LoaderTailSpin';
 import { fetchCarId } from '../../api';
-import { Car } from '../../types';
+import { Car, Reviews } from '../../types';
 import toast from 'react-hot-toast';
 import SliderLazyLoad from '../UI/SliderLazyLoad/SliderLazyLoad';
 import { Section } from '../UI/Section/Section.styled';
 import { CarInfoContainer, CarInfoTitle } from './CarInfo.styled';
-import NotFound from '../../pages/NotFoundPage';
+import NotFound from '../UI/NotFound/NotFound';
+import { Button } from '../UI/Button/Button.styled';
+
+type LocalReview = {
+  reviewerName: string;
+  date: string;
+  comment: string;
+};
+
+type LocalReviews = {
+  id: string;
+  reviews: LocalReview[];
+};
 
 const CarInfo: FC = () => {
   const { id } = useParams();
-  const [car, setCar] = useState<Car>();
+  const [car, setCar] = useState<Car>({});
+  const [reviewsUser, setReviewsUser] = useState<LocalReview[]>([]);
+  const [reviewsApi, setReviewsApi] = useState<Reviews>([]);
+  const [reviews, setReviews] = useState<Reviews>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -26,12 +41,12 @@ const CarInfo: FC = () => {
 
         const data = await fetchCarId(id);
 
-        console.log(data);
         if (data.category !== 'vehicle') setError(true);
 
-        console.log(data);
         setCar(data);
+        setReviewsApi(data.reviews);
       } catch (err: unknown) {
+        setError(true);
         if (err instanceof Error) {
           toast.error(err.message);
         } else {
@@ -44,6 +59,24 @@ const CarInfo: FC = () => {
 
     api();
   }, []);
+
+  useEffect(() => {
+    const reviewsStored = localStorage.getItem('reviews');
+    const reviewsArrStored: LocalReviews[] | null = reviewsStored
+      ? JSON.parse(reviewsStored)
+      : null;
+
+    if (reviewsArrStored) {
+      const reviewsArr = reviewsArrStored.find((e: LocalReviews) => e.id === id);
+      console.log(reviewsArr);
+
+      if (reviewsArr) setReviewsUser(reviewsArr.reviews);
+    }
+  }, []);
+
+  useEffect(() => {
+    setReviews([...reviewsApi, ...reviewsUser]);
+  }, [reviewsApi, reviewsUser]);
 
   if (error) {
     return <NotFound />;
@@ -59,25 +92,23 @@ const CarInfo: FC = () => {
         <>
           <Section>
             <CarInfoTitle>
-              {car?.brand} {car?.title}
+              {car.brand} {car.title}
             </CarInfoTitle>
           </Section>
           <Section>
-            <SliderLazyLoad pictures={car?.images} />
+            <SliderLazyLoad pictures={car.images} />
           </Section>
           <Section>
             {/* CarCaption */}
-            <p>{car?.description}</p>
-            <p>Price: {car?.price}$</p>
-            <p>
-              Number of cars in stock: {car?.stock === 0 ? car?.availabilityStatus : car?.stock}
-            </p>
+            <p>{car.description}</p>
+            <p>Price: {car.price}$</p>
+            <p>Number of cars in stock: {car?.stock === 0 ? car.availabilityStatus : car.stock}</p>
           </Section>
           <Section>
             {/* CarReview */}
             <h3>Reviews:</h3>
             <ul>
-              {car?.reviews.map(({ reviewerName, date, comment }, i) => {
+              {reviews.map(({ reviewerName, date, comment }, i) => {
                 return (
                   <li key={i}>
                     <p>Name: {reviewerName}</p>
@@ -87,6 +118,8 @@ const CarInfo: FC = () => {
                 );
               })}
             </ul>
+
+            <Button>add review</Button>
           </Section>
         </>
       )}

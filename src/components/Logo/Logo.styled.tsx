@@ -21,12 +21,34 @@ export const LogoContainer = styled(Link)`
 `;
 
 export const LogoText = styled.p`
+  font-size: 12px;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textWhite};
+
+  @media screen and (min-width: 375px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 20px;
+  }
 `;
 
 export const LogoIcon = styled(PiCarLight)`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+
   fill: ${p => p.theme.colors.accent};
+
+  @media screen and (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;

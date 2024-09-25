@@ -11,5 +11,6 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterText = styled.p`
+  font-size: 10px;
   color: ${p => p.theme.colors.textWhite};
 `;
