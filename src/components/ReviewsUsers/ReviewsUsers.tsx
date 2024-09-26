@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Reviews } from '../../types';
+import { LocalReview, Reviews } from '../../types';
 import { Button } from '../UI/Button/Button.styled';
 import {
   ReviewsUsersContainer,
@@ -12,9 +12,10 @@ import ModalAddReview from '../ModalAddReview/ModalAddReview';
 
 type ReviewsUsersComponents = {
   reviews: Reviews;
+  addReview: (rewiew: LocalReview) => void;
 };
 
-const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews }) => {
+const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews, addReview }) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const closeModal = () => {
@@ -40,7 +41,7 @@ const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews }) => {
 
         <Button onClick={() => setOpen(true)}>add review</Button>
       </ReviewsUsersContainer>
-      <ModalAddReview isOpen={open} closeModal={closeModal} />
+      <ModalAddReview isOpen={open} closeModal={closeModal} addReview={addReview} />
     </>
   );
 };

@@ -6,6 +6,11 @@ type Review = {
   reviewerName: string;
 };
 
+export type LocalReview = {
+  reviewerName: string;
+  comment: string;
+};
+
 export type Reviews = Review[];
 
 export type Car = {

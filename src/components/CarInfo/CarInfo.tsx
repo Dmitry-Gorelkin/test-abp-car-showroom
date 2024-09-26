@@ -2,18 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import LoaderTailSpin from '../UI/LoaderTailSpin/LoaderTailSpin';
 import { fetchCarId } from '../../api';
-import { Car, Reviews } from '../../types';
+import { Car, LocalReview, Reviews } from '../../types';
 import toast from 'react-hot-toast';
 import SliderLazyLoad from '../UI/SliderLazyLoad/SliderLazyLoad';
 import { Section } from '../UI/Section/Section.styled';
 import { CarInfoContainer, CarInfoTitle } from './CarInfo.styled';
 import NotFound from '../UI/NotFound/NotFound';
 import ReviewsUsers from '../ReviewsUsers/ReviewsUsers';
-
-type LocalReview = {
-  reviewerName: string;
-  comment: string;
-};
 
 type LocalReviews = {
   id: string;
@@ -61,20 +56,36 @@ const CarInfo: FC = () => {
 
   useEffect(() => {
     const reviewsStored = localStorage.getItem('reviews');
-    const reviewsArrStored: LocalReviews[] | null = reviewsStored
-      ? JSON.parse(reviewsStored)
-      : null;
+    const reviewsArrStored: LocalReviews[] = reviewsStored ? JSON.parse(reviewsStored) : [];
+    const reviewsId = reviewsArrStored.find((e: LocalReviews) => e.id === id);
 
-    if (reviewsArrStored) {
-      const reviewsArr = reviewsArrStored.find((e: LocalReviews) => e.id === id);
-
-      if (reviewsArr) setReviewsUser(reviewsArr.reviews);
-    }
+    if (reviewsId) setReviewsUser(reviewsId.reviews);
   }, [id]);
 
   useEffect(() => {
     setReviews([...reviewsApi, ...reviewsUser]);
   }, [reviewsApi, reviewsUser]);
+
+  const addReviewUserAdd = (rewiew: LocalReview): void => {
+    setReviewsUser(prev => [...prev, rewiew]);
+
+    const reviewsStored = localStorage.getItem('reviews');
+    const reviewsArrStored: LocalReviews[] = reviewsStored ? JSON.parse(reviewsStored) : [];
+    const reviewsId = reviewsArrStored.find((e: LocalReviews) => e.id === id);
+
+    if (reviewsId) {
+      const newReviewsId = { ...reviewsId, reviews: [...reviewsId.reviews, rewiew] };
+      const newReviewsArrStored = reviewsArrStored.filter((e: LocalReviews) => e.id !== id);
+
+      localStorage.setItem('reviews', JSON.stringify([...newReviewsArrStored, newReviewsId]));
+
+      return;
+    }
+
+    const newReviewsId = { id, reviews: [rewiew] };
+
+    localStorage.setItem('reviews', JSON.stringify([...reviewsArrStored, newReviewsId]));
+  };
 
   if (error) {
     return <NotFound />;
@@ -103,7 +114,7 @@ const CarInfo: FC = () => {
             <p>Number of cars in stock: {car.stock === 0 ? car.availabilityStatus : car.stock}</p>
           </Section>
           <Section>
-            <ReviewsUsers reviews={reviews} />
+            <ReviewsUsers reviews={reviews} addReview={addReviewUserAdd} />
           </Section>
         </>
       )}

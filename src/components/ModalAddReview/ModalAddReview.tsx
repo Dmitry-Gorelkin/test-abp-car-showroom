@@ -7,10 +7,19 @@ import {
   ModalInput,
   ModalTextarea,
 } from './ModalAddReview.styled';
+import { LocalReview } from '../../types';
 
 type ModalAddReviewComponents = {
   isOpen: boolean;
   closeModal: () => void;
+  addReview: (review: LocalReview) => void;
+};
+
+type CommentUser = { reviewerName: string; comment: string };
+
+const initiationState: CommentUser = {
+  reviewerName: '',
+  comment: '',
 };
 
 const customStyles = {
@@ -33,50 +42,45 @@ const customStyles = {
   },
 };
 
-const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal }) => {
-  const [name, setName] = useState<string>('');
-  const [comment, setComment] = useState<string>('');
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
-  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
-  };
-  const handleAddReview = () => {
-    console.log('Name:', name);
-    console.log('Comment:', comment);
-
-    localStorage.removeItem('reviewName');
-    localStorage.removeItem('reviewComment');
-
-    setName('');
-    setComment('');
-    closeModal();
-  };
+const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal, addReview }) => {
+  const [reviewData, setReviewData] = useState<CommentUser>(initiationState);
 
   useEffect(() => {
     if (isOpen) {
-      const storedName = localStorage.getItem('reviewName');
-      const storedComment = localStorage.getItem('reviewComment');
+      const storedData = localStorage.getItem('reviewData');
 
-      if (storedName) setName(storedName);
-      if (storedComment) setComment(storedComment);
+      if (storedData) {
+        setReviewData(JSON.parse(storedData));
+      }
     }
   }, [isOpen]);
 
   useEffect(() => {
-    localStorage.setItem('reviewName', name);
-    localStorage.setItem('reviewComment', comment);
-  }, [name, comment]);
+    localStorage.setItem('reviewData', JSON.stringify(reviewData));
+  }, [reviewData]);
 
   useEffect(() => {
     return () => {
-      localStorage.removeItem('reviewName');
-      localStorage.removeItem('reviewComment');
+      localStorage.removeItem('reviewData');
     };
   }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setReviewData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleAddReview = () => {
+    addReview(reviewData);
+
+    localStorage.removeItem('reviewData');
+
+    setReviewData(initiationState);
+    closeModal();
+  };
 
   return (
     <Modal
@@ -89,18 +93,17 @@ const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal }) =>
     >
       <ModalContainer>
         <ModalInput
-          name="name"
+          name="reviewerName"
           type="text"
           placeholder="Name"
-          value={name}
-          onChange={handleNameChange}
+          value={reviewData.reviewerName}
+          onChange={handleChange}
         />
         <ModalTextarea
           name="comment"
-          id=""
           placeholder="Comment"
-          value={comment}
-          onChange={handleCommentChange}
+          value={reviewData.comment}
+          onChange={handleChange}
         ></ModalTextarea>
         <ModalBtnContainer>
           <Button onClick={handleAddReview}>add</Button>
