@@ -26,6 +26,7 @@ const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews, addReview }) => {
     <>
       <ReviewsUsersContainer>
         <ReviewsUsersTitle>Reviews:</ReviewsUsersTitle>
+
         <ReviewsUsersList>
           {reviews.map(({ reviewerName, comment }, i) => {
             return (
@@ -41,6 +42,7 @@ const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews, addReview }) => {
 
         <Button onClick={() => setOpen(true)}>add review</Button>
       </ReviewsUsersContainer>
+
       <ModalAddReview isOpen={open} closeModal={closeModal} addReview={addReview} />
     </>
   );
