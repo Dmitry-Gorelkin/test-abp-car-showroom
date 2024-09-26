@@ -31,6 +31,13 @@ export const ModalInput = styled.input`
 
   border: 1px solid ${p => p.theme.colors.backgroundSecondary};
   border-radius: 16px;
+
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border-color: ${p => p.theme.colors.accent};
+  }
 `;
 export const ModalTextarea = styled.textarea`
   display: block;
@@ -43,14 +50,19 @@ export const ModalTextarea = styled.textarea`
 
   border: 1px solid ${p => p.theme.colors.backgroundSecondary};
   border-radius: 16px;
+
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border-color: ${p => p.theme.colors.accent};
+  }
 `;
 
 export const ModalBtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* padding: 15px; */
 
   gap: 15px;
 `;

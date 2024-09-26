@@ -15,7 +15,7 @@ export const LogoContainer = styled(Link)`
   transition: transform 0.3s ease;
 
   &:hover,
-  :focus {
+  &:focus {
     transform: scale(1.05);
   }
 `;

@@ -22,7 +22,7 @@ export const Button = styled.button`
   color: ${p => p.theme.colors.textWhite};
 
   &:hover,
-  :focus {
+  &:focus {
     background-color: ${p => p.theme.colors.btnHover};
   }
 

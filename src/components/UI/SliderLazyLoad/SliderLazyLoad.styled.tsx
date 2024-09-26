@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const SliderLazyLoadContainer = styled.div`
-  /* display: block; */
-
   display: flex;
   flex-direction: column;
   gap: 35px;
