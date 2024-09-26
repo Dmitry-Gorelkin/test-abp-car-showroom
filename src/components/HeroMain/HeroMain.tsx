@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Section } from '../UI/Section/Section.styled';
 import { HeroMainContainer, HeroMainTitle } from './HeroMain.styled';
+import { Section } from '../UI/Section/Section.styled';
 
 const HeroMain: FC = () => {
   return (

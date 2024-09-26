@@ -5,8 +5,9 @@ import { Car } from '../../types';
 import NoCars from '../NoCars/NoCars';
 import CarCard from '../CarCard/CarCard';
 import { CarsListContainer } from './CarsList.styled';
-import { Section } from '../UI/Section/Section.styled';
 import LoaderPuff from '../UI/LoaderPuff/LoaderPuff';
+import { Section } from '../UI/Section/Section.styled';
+import Filter from '../Filter/Filter';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -34,6 +35,9 @@ const CarsList: FC = () => {
 
   return (
     <Section>
+      <Section>
+        <Filter />
+      </Section>
       <CarsListContainer>
         {loading ? (
           <LoaderPuff />
