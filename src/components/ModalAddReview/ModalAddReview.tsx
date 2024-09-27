@@ -8,6 +8,7 @@ import {
   ModalTextarea,
 } from './ModalAddReview.styled';
 import { LocalReview } from '../../types';
+import toast from 'react-hot-toast';
 
 type ModalAddReviewComponents = {
   isOpen: boolean;
@@ -67,6 +68,7 @@ const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal, addR
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
     setReviewData(prev => ({
       ...prev,
       [name]: value,
@@ -74,6 +76,11 @@ const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal, addR
   };
 
   const handleAddReview = () => {
+    if (reviewData.reviewerName.trim() === '' || reviewData.comment.trim() === '') {
+      toast.error('The fields must be filled in. It is not allowed to send an empty value.');
+      return;
+    }
+
     addReview(reviewData);
 
     localStorage.removeItem('reviewData');
