@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { fetchCarList } from '../../api';
-import { Car } from '../../types';
+import { Car, FilterCars } from '../../types';
 import NoCars from '../NoCars/NoCars';
 import CarCard from '../CarCard/CarCard';
 import { CarsListContainer } from './CarsList.styled';
@@ -11,6 +11,7 @@ import Filter from '../Filter/Filter';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
+  const [visibleCars, setVisibleCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -33,10 +34,22 @@ const CarsList: FC = () => {
     api();
   }, []);
 
+  const carsMpdels = () => {
+    const models = cars.map(e => e.brand);
+
+    return [...new Set(models)];
+  };
+
+  const filterVisibleCars = (filterCar: FilterCars): void => {
+    const filterCar({ filter: filterCar, cars });
+    setVisibleCars(filterCar({ filter: filterCar, cars }));
+  };
+
+  console.log(cars);
   return (
     <Section>
       <Section>
-        <Filter />
+        <Filter carModel={carsMpdels} filterCars={filterVisibleCars} />
       </Section>
       <CarsListContainer>
         {loading ? (

@@ -6,11 +6,6 @@ type Review = {
   reviewerName: string;
 };
 
-export type LocalReview = {
-  reviewerName: string;
-  comment: string;
-};
-
 export type Reviews = Review[];
 
 export type Car = {
@@ -36,4 +31,17 @@ export type Car = {
   title: string;
   warrantyInformation: string;
   weight: number;
+};
+
+export type LocalReview = {
+  reviewerName: string;
+  comment: string;
+};
+
+export type FilterCars = {
+  inStock: boolean;
+  priceFrom: string;
+  priceTo: string;
+  sort: string;
+  models: string;
 };
