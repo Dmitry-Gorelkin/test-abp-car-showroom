@@ -8,6 +8,7 @@ import { CarsListContainer } from './CarsList.styled';
 import LoaderPuff from '../UI/LoaderPuff/LoaderPuff';
 import { Section } from '../UI/Section/Section.styled';
 import Filter from '../Filter/Filter';
+import filterCarVisible from '../../utils/filterCar';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -34,6 +35,10 @@ const CarsList: FC = () => {
     api();
   }, []);
 
+  useEffect(() => {
+    setVisibleCars(cars);
+  }, [cars]);
+
   const carsMpdels = () => {
     const models = cars.map(e => e.brand);
 
@@ -41,21 +46,28 @@ const CarsList: FC = () => {
   };
 
   const filterVisibleCars = (filterCar: FilterCars): void => {
-    const filterCar({ filter: filterCar, cars });
-    setVisibleCars(filterCar({ filter: filterCar, cars }));
+    const newCarsFromFilter = filterCarVisible({ filter: filterCar, cars });
+    setVisibleCars(newCarsFromFilter);
   };
 
-  console.log(cars);
+  const resetFilterVisibleCars = () => {
+    setVisibleCars(cars);
+  };
+
   return (
     <Section>
       <Section>
-        <Filter carModel={carsMpdels} filterCars={filterVisibleCars} />
+        <Filter
+          carModel={carsMpdels}
+          filterCars={filterVisibleCars}
+          resetFilter={resetFilterVisibleCars}
+        />
       </Section>
       <CarsListContainer>
         {loading ? (
           <LoaderPuff />
-        ) : cars.length > 0 ? (
-          cars.map(({ id, images, brand, title, price }) => (
+        ) : visibleCars.length > 0 ? (
+          visibleCars.map(({ id, images, brand, title, price }) => (
             <CarCard
               key={id}
               id={id}

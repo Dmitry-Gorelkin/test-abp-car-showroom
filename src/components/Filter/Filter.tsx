@@ -2,10 +2,12 @@ import React, { FC, useEffect, useState } from 'react';
 import { Button } from '../UI/Button/Button.styled';
 import { ButtonContainer, FilterContainer, InputContainer } from './Filter.styled';
 import { FilterCars } from '../../types';
+import toast from 'react-hot-toast';
 
 type FilterTypeComponents = {
   carModel: () => string[];
   filterCars: (filer: FilterCars) => void;
+  resetFilter: () => void;
 };
 
 const initialFilter: FilterCars = {
@@ -16,7 +18,7 @@ const initialFilter: FilterCars = {
   models: 'All Models',
 };
 
-const Filter: FC<FilterTypeComponents> = ({ carModel, filterCars }) => {
+const Filter: FC<FilterTypeComponents> = ({ carModel, filterCars, resetFilter }) => {
   const [filter, setFilter] = useState<FilterCars>(initialFilter);
   const [optin, serOption] = useState<string[]>([]);
 
@@ -44,11 +46,21 @@ const Filter: FC<FilterTypeComponents> = ({ carModel, filterCars }) => {
   };
 
   const handleApply = () => {
+    const { priceFrom, priceTo } = filter;
+
+    if (priceFrom !== '' && priceTo !== '') {
+      if (parseInt(priceFrom) > parseInt(priceTo)) {
+        toast.error('Цена до не может быть меньше цены от!');
+        return;
+      }
+    }
+
     filterCars(filter);
   };
 
   const handleReset = () => {
     setFilter(initialFilter);
+    resetFilter();
   };
 
   return (
