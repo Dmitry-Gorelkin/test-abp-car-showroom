@@ -10,7 +10,7 @@ import {
 import { LocalReview } from '../../types';
 import toast from 'react-hot-toast';
 
-type ModalAddReviewComponents = {
+type ModalAddReviewProps = {
   isOpen: boolean;
   closeModal: () => void;
   addReview: (review: LocalReview) => void;
@@ -43,7 +43,7 @@ const customStyles = {
   },
 };
 
-const ModalAddReview: FC<ModalAddReviewComponents> = ({ isOpen, closeModal, addReview }) => {
+const ModalAddReview: FC<ModalAddReviewProps> = ({ isOpen, closeModal, addReview }) => {
   const [reviewData, setReviewData] = useState<CommentUser>(initiationState);
 
   useEffect(() => {

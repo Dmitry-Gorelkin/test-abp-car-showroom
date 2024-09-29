@@ -4,7 +4,7 @@ import { ButtonContainer, FilterContainer, InputContainer } from './Filter.style
 import { FilterCars } from '../../types';
 import toast from 'react-hot-toast';
 
-type FilterTypeComponents = {
+type FilterProps = {
   carModel: () => string[];
   filterCars: (filer: FilterCars) => void;
   resetFilter: () => void;
@@ -18,7 +18,7 @@ const initialFilter: FilterCars = {
   models: 'All Models',
 };
 
-const Filter: FC<FilterTypeComponents> = ({ carModel, filterCars, resetFilter }) => {
+const Filter: FC<FilterProps> = ({ carModel, filterCars, resetFilter }) => {
   const [filter, setFilter] = useState<FilterCars>(initialFilter);
   const [optin, serOption] = useState<string[]>([]);
 

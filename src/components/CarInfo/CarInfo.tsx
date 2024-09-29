@@ -8,7 +8,8 @@ import SliderLazyLoad from '../UI/SliderLazyLoad/SliderLazyLoad';
 import { Section } from '../UI/Section/Section.styled';
 import { CarInfoContainer, CarInfoTitle } from './CarInfo.styled';
 import NotFound from '../UI/NotFound/NotFound';
-import ReviewsUsers from '../ReviewsUsers/ReviewsUsers';
+import CarReviews from '../CarReviews/CarReviews';
+import CarDescription from '../CarDescription/CarDescription';
 
 type LocalReviews = {
   id: string;
@@ -108,13 +109,15 @@ const CarInfo: FC = () => {
             <SliderLazyLoad pictures={car.images} />
           </Section>
           <Section>
-            {/* CarCaption */}
-            <p>{car.description}</p>
-            <p>Price: {car.price}$</p>
-            <p>Number of cars in stock: {car.stock === 0 ? car.availabilityStatus : car.stock}</p>
+            <CarDescription
+              description={car.description}
+              price={car.price}
+              availabilityStatus={car.availabilityStatus}
+              stock={car.stock}
+            />
           </Section>
           <Section>
-            <ReviewsUsers reviews={reviews} addReview={addReviewUserAdd} />
+            <CarReviews reviews={reviews} addReview={addReviewUserAdd} />
           </Section>
         </>
       )}

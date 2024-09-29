@@ -2,20 +2,20 @@ import { FC, useState } from 'react';
 import { LocalReview, Reviews } from '../../types';
 import { Button } from '../UI/Button/Button.styled';
 import {
-  ReviewsUsersContainer,
-  ReviewsUsersTitle,
-  ReviewsUsersList,
-  ReviewsUsersItem,
-  ReviewsUsersName,
-} from './ReviewsUsers.styled';
+  CarReviewsContainer,
+  CarReviewsTitle,
+  CarReviewsList,
+  CarReviewsItem,
+  CarReviewsName,
+} from './CarReviews.styled';
 import ModalAddReview from '../ModalAddReview/ModalAddReview';
 
-type ReviewsUsersComponents = {
+type CarReviewsProps = {
   reviews: Reviews;
   addReview: (rewiew: LocalReview) => void;
 };
 
-const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews, addReview }) => {
+const CarReviews: FC<CarReviewsProps> = ({ reviews, addReview }) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const closeModal = () => {
@@ -24,28 +24,28 @@ const ReviewsUsers: FC<ReviewsUsersComponents> = ({ reviews, addReview }) => {
 
   return (
     <>
-      <ReviewsUsersContainer>
-        <ReviewsUsersTitle>Reviews:</ReviewsUsersTitle>
+      <CarReviewsContainer>
+        <CarReviewsTitle>Reviews</CarReviewsTitle>
 
-        <ReviewsUsersList>
+        <CarReviewsList>
           {reviews.map(({ reviewerName, comment }, i) => {
             return (
-              <ReviewsUsersItem key={i}>
+              <CarReviewsItem key={i}>
                 <p>
-                  <ReviewsUsersName>Name:</ReviewsUsersName> {reviewerName}
+                  <CarReviewsName>Name:</CarReviewsName> {reviewerName}
                 </p>
                 <p>{comment}</p>
-              </ReviewsUsersItem>
+              </CarReviewsItem>
             );
           })}
-        </ReviewsUsersList>
+        </CarReviewsList>
 
         <Button onClick={() => setOpen(true)}>add review</Button>
-      </ReviewsUsersContainer>
+      </CarReviewsContainer>
 
       <ModalAddReview isOpen={open} closeModal={closeModal} addReview={addReview} />
     </>
   );
 };
 
-export default ReviewsUsers;
+export default CarReviews;

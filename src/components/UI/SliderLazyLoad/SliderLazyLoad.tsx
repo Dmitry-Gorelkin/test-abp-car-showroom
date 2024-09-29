@@ -5,33 +5,35 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Button } from '../Button/Button.styled';
 import { SliderLazyLoadContainerButton, SliderLazyLoadContainer } from './SliderLazyLoad.styled';
 
-type Pictures = {
+type SliderLazyLoadProps = {
   pictures: string[] | undefined;
 };
 
-const SliderLazyLoad: FC<Pictures> = ({ pictures }) => {
+const settings = {
+  dots: true,
+  lazyLoad: 'progressive' as 'ondemand' | 'progressive',
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  arrows: false,
+  swipe: true,
+};
+
+const SliderLazyLoad: FC<SliderLazyLoadProps> = ({ pictures }) => {
   const sliderRef = useRef<Slider | null>(null);
+
   const next = () => {
     if (sliderRef.current) {
       sliderRef.current.slickNext();
     }
   };
+
   const previous = () => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
     }
-  };
-
-  const settings = {
-    dots: true,
-    lazyLoad: 'progressive' as 'ondemand' | 'progressive',
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    arrows: false,
-    swipe: true,
   };
 
   return pictures ? (

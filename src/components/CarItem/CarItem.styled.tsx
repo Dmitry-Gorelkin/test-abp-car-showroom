@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CarCardContainer = styled.li`
+export const CarItemContainer = styled.li`
   display: block;
 
   border: 1px solid ${p => p.theme.colors.backgroundimage};
@@ -18,11 +18,11 @@ export const CarCardContainer = styled.li`
   }
 `;
 
-export const CarCardLink = styled(Link)`
+export const CarItemLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const CarCardImg = styled.img`
+export const CarItemImg = styled.img`
   display: block;
   width: 100%;
 
@@ -39,21 +39,21 @@ export const CarCardImg = styled.img`
   }
 `;
 
-export const CarCardCaption = styled.div`
+export const CarItemCaption = styled.div`
   background-color: ${p => p.theme.colors.backgroundimage};
 `;
 
-export const CarCardTitle = styled.h3`
+export const CarItemTitle = styled.h3`
   text-align: center;
   padding: 8px 0px;
 `;
 
-export const CarCardText = styled.p`
+export const CarItemText = styled.p`
   text-align: center;
   padding: 8px 0px;
 `;
 
-export const CarCardPrice = styled.span`
+export const CarItemPrice = styled.span`
   text-align: center;
   color: ${p => p.theme.colors.accent};
 `;

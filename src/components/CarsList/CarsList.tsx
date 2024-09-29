@@ -3,12 +3,12 @@ import toast from 'react-hot-toast';
 import { fetchCarList } from '../../api';
 import { Car, FilterCars } from '../../types';
 import NoCars from '../NoCars/NoCars';
-import CarCard from '../CarCard/CarCard';
 import { CarsListContainer } from './CarsList.styled';
 import LoaderPuff from '../UI/LoaderPuff/LoaderPuff';
 import { Section } from '../UI/Section/Section.styled';
 import Filter from '../Filter/Filter';
 import filterCarVisible from '../../utils/filterCar';
+import CarItem from '../CarItem/CarItem';
 
 const CarsList: FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -68,7 +68,7 @@ const CarsList: FC = () => {
           <LoaderPuff />
         ) : visibleCars.length > 0 ? (
           visibleCars.map(({ id, images, brand, title, price }) => (
-            <CarCard
+            <CarItem
               key={id}
               id={id}
               srcImages={images[0]}

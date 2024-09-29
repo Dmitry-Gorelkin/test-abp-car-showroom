@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { LogoContainer, LogoIcon, LogoText } from './Logo.styled';
 
-type LogoTS = {
+type LogoProps = {
   to: string;
 };
 
-const Logo: FC<LogoTS> = ({ to }) => {
+const Logo: FC<LogoProps> = ({ to }) => {
   return (
     <LogoContainer to={to}>
       <LogoText>Car</LogoText>

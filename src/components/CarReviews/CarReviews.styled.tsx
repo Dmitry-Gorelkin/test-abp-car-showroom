@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ReviewsUsersContainer = styled.div`
+export const CarReviewsContainer = styled.div`
   display: flex;
 
   flex-direction: column;
@@ -8,19 +8,19 @@ export const ReviewsUsersContainer = styled.div`
   gap: 15px;
 `;
 
-export const ReviewsUsersTitle = styled.h2`
+export const CarReviewsTitle = styled.h2`
   text-align: center;
   text-transform: uppercase;
 `;
 
-export const ReviewsUsersList = styled.ul`
+export const CarReviewsList = styled.ul`
   display: flex;
   flex-direction: column;
 
   gap: 15px;
 `;
 
-export const ReviewsUsersItem = styled.li`
+export const CarReviewsItem = styled.li`
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -32,6 +32,6 @@ export const ReviewsUsersItem = styled.li`
   }
 `;
 
-export const ReviewsUsersName = styled.span`
+export const CarReviewsName = styled.span`
   color: ${p => p.theme.colors.textSecondary};
 `;
