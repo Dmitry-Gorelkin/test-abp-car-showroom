@@ -9,7 +9,7 @@ const filterCarVisible = (filter: Filter): Car[] => {
   const { inStock, priceFrom, priceTo, sort, models } = filter.filter;
   const cars = filter.cars;
 
-  let visibleCars = cars;
+  let visibleCars = [...cars];
 
   if (inStock) {
     visibleCars = visibleCars.filter(e => e.availabilityStatus === 'In Stock');
