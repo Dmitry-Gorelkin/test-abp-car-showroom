@@ -58,7 +58,6 @@ const Filter: FC<FilterProps> = ({ carModel, filterCars, resetFilter }) => {
 
   const handleApply = () => {
     const { priceFrom, priceTo } = filter;
-    console.log({ priceFrom, priceTo });
 
     if (parseInt(priceFrom) < 0 || parseInt(priceTo) < 0) {
       toast.error('The price cannot be less than zero!');
