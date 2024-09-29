@@ -58,10 +58,16 @@ const Filter: FC<FilterProps> = ({ carModel, filterCars, resetFilter }) => {
 
   const handleApply = () => {
     const { priceFrom, priceTo } = filter;
+    console.log({ priceFrom, priceTo });
+
+    if (parseInt(priceFrom) < 0 || parseInt(priceTo) < 0) {
+      toast.error('The price cannot be less than zero!');
+      return;
+    }
 
     if (priceFrom !== '' && priceTo !== '') {
       if (parseInt(priceFrom) > parseInt(priceTo)) {
-        toast.error('Цена до не может быть меньше цены от!');
+        toast.error('The maximum price cannot be less than the minimum price!');
         return;
       }
     }
