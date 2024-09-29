@@ -3,6 +3,7 @@ import { Car } from '../../types';
 import {
   CarDescriptionContainer,
   CarDescriptionSpan,
+  CarDescriptionText,
   CarDescriptionTitle,
 } from './CarDescription.styled';
 
@@ -18,13 +19,13 @@ const CarDescription: FC<CarDescriptionProps> = ({
     <CarDescriptionContainer>
       <CarDescriptionTitle>Description</CarDescriptionTitle>
       <p>{description}</p>
-      <p>
+      <CarDescriptionText>
         Price: <CarDescriptionSpan>{price}$</CarDescriptionSpan>
-      </p>
-      <p>
+      </CarDescriptionText>
+      <CarDescriptionText>
         Number of cars in stock:{' '}
         <CarDescriptionSpan>{stock === 0 ? availabilityStatus : stock}</CarDescriptionSpan>
-      </p>
+      </CarDescriptionText>
     </CarDescriptionContainer>
   );
 };

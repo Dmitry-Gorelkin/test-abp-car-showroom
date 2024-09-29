@@ -12,6 +12,10 @@ export const CarDescriptionTitle = styled.h2`
   text-transform: uppercase;
 `;
 
+export const CarDescriptionText = styled.p`
+  color: ${p => p.theme.colors.textSecondary};
+`;
+
 export const CarDescriptionSpan = styled.span`
   color: ${p => p.theme.colors.accent};
 `;
