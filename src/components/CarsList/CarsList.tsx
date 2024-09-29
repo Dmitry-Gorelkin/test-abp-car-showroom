@@ -63,24 +63,26 @@ const CarsList: FC = () => {
           resetFilter={resetFilterVisibleCars}
         />
       </Section>
-      <CarsListContainer>
-        {loading ? (
-          <LoaderPuff />
-        ) : visibleCars.length > 0 ? (
-          visibleCars.map(({ id, images, brand, title, price }) => (
-            <CarItem
-              key={id}
-              id={id}
-              srcImages={images[0]}
-              brand={brand}
-              title={title}
-              price={price}
-            />
-          ))
-        ) : (
-          <NoCars />
-        )}
-      </CarsListContainer>
+      <Section>
+        <CarsListContainer>
+          {loading ? (
+            <LoaderPuff />
+          ) : visibleCars.length > 0 ? (
+            visibleCars.map(({ id, images, brand, title, price }) => (
+              <CarItem
+                key={id}
+                id={id}
+                srcImages={images[0]}
+                brand={brand}
+                title={title}
+                price={price}
+              />
+            ))
+          ) : (
+            <NoCars />
+          )}
+        </CarsListContainer>
+      </Section>
     </Section>
   );
 };
